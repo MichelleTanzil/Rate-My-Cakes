@@ -1,0 +1,29 @@
+<h1 class="text-center mt-3">{{title}}</h1>
+<!-- TODO: Add validation errors -->
+<!-- Seperate models -->
+<div class="root pl-3 pr-3">
+  <form (submit)="onSubmitNewCake()" class="mb-3">
+    <h5>Submit a cake to be rated</h5>
+    <div class="form-group">
+      <label for="baker_name">Baker Name: </label>
+      <input type="text" class="form-control" name="baker_name" [(ngModel)]="newCake.baker_name">
+    </div>
+    <div class="form-group">
+      <label for="image">Image URL: </label>
+      <input type="text" class="form-control" name="image" [(ngModel)]="newCake.image">
+    </div>
+    <button type="submit" class="btn btn-primary">Create Cake</button>
+  </form>
+  <hr>
+  <h5>List of Cakes: </h5>
+  <div *ngFor="let cake of cakes" class="mb-3">
+    <img [src]="cake.image" (click)="getCake(cake._id)">
+    <app-cake-review [cake]='cake'>
+    </app-cake-review>
+  </div>
+</div>
+
+<div class="oneTask">
+  <app-display-cake *ngIf="currentCake" [cakeToShow]='currentCake' [cakeToShowAverage]='currentCakeAverage'>
+  </app-display-cake>
+</div>

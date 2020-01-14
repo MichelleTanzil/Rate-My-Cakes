@@ -1,0 +1,18 @@
+<form (submit)="onSubmitNewReview(cake._id)">
+  <div class="form-group">
+    <label for="rating">Rating: </label>
+    <select name="rating" class="form-control" [(ngModel)]="newReview.rating">
+      <option value="5">5 stars</option>
+      <option value="4">4 stars</option>
+      <option value="3">3 stars</option>
+      <option value="2">2 stars</option>
+      <option value="1">1 star</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="image">Comment: </label>
+    <textarea name="comment" cols="10" rows="5" class="form-control" placeholder="Type your comment here"
+      [(ngModel)]="newReview.comment"></textarea>
+  </div>
+  <button type="submit" class="btn btn-primary">Create Review</button>
+</form>
