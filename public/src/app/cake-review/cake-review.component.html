@@ -1,3 +1,7 @@
+<div *ngIf="errors">
+  <p *ngIf="errors.rating" class="text-danger">{{errors.rating.message}}</p>
+</div>
+
 <form (submit)="onSubmitNewReview(cake._id)">
   <div class="form-group">
     <label for="rating">Rating: </label>

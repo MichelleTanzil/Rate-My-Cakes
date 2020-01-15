@@ -1,6 +1,10 @@
 <h1 class="text-center mt-3">{{title}}</h1>
-<!-- TODO: Add validation errors -->
-<!-- Seperate models -->
+<!-- TODO: Figure out Search Bar thing -->
+<div *ngIf="errors">
+  <p *ngIf="errors.baker_name" class="text-danger">{{errors.baker_name.message}}</p>
+  <p *ngIf="errors.image" class="text-danger">{{errors.image.message}}</p>
+</div>
+
 <div class="root pl-3 pr-3">
   <form (submit)="onSubmitNewCake()" class="mb-3">
     <h5>Submit a cake to be rated</h5>

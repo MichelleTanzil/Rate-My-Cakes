@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { HttpService } from "./http.service";
+import { HttpErrorResponse } from "@angular/common/http";
 
 @Component({
   selector: "app-root",
@@ -12,12 +13,12 @@ export class AppComponent implements OnInit {
   newCake: {};
   currentCake: any;
   currentCakeAverage: any;
+  errors: [];
 
   constructor(private _httpService: HttpService) {}
   ngOnInit() {
     this.getCakes();
     this.newCake = { baker_name: "", image: "" };
-
   }
   getCakes() {
     let observable = this._httpService.getCakes();
@@ -50,9 +51,13 @@ export class AppComponent implements OnInit {
     let observable = this._httpService.createCake(this.newCake);
     observable.subscribe(newCake => {
       console.log("Got our new cake!", newCake);
+      if (newCake.errors) {
+        this.errors = newCake.errors;
+        console.log("Errors: ", this.errors);
+      }
     });
+    this.errors = null;
     this.newCake = { baker_name: "", image: "" };
     this.getCakes();
   }
-
 }

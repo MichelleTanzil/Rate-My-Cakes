@@ -9,7 +9,7 @@ import { HttpService } from "../http.service";
 export class CakeReviewComponent implements OnInit {
   @Input() cake: {};
   newReview: {};
-
+  errors: {};
   constructor(private _httpService: HttpService) {
     this.newReview = { rating: "", comment: "" };
   }
@@ -22,7 +22,13 @@ export class CakeReviewComponent implements OnInit {
     let observable = this._httpService.createReview(this.newReview, id);
     observable.subscribe(newReview => {
       console.log("Got our new Review!", newReview);
+      if (newReview.errors) {
+        console.log("NewReview Errors: ", newReview.errors);
+        this.errors = newReview.errors;
+        console.log("Errors: ", this.errors);
+      }
     });
+    this.errors = null;
     this.newReview = { rating: "", comment: "" };
   }
 }
