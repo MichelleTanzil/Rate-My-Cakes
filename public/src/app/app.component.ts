@@ -13,7 +13,7 @@ export class AppComponent implements OnInit {
   newCake: {};
   currentCake: any;
   currentCakeAverage: any;
-  errors: [];
+  errors:any;
 
   constructor(private _httpService: HttpService) {}
   ngOnInit() {
@@ -51,7 +51,7 @@ export class AppComponent implements OnInit {
     let observable = this._httpService.createCake(this.newCake);
     observable.subscribe(newCake => {
       console.log("Got our new cake!", newCake);
-      if (newCake.errors) {
+      if (newCake.hasOwnProperty("errors")) {
         this.errors = newCake.errors;
         console.log("Errors: ", this.errors);
       }

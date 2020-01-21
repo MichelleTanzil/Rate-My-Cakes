@@ -22,8 +22,9 @@ export class CakeReviewComponent implements OnInit {
     let observable = this._httpService.createReview(this.newReview, id);
     observable.subscribe(newReview => {
       console.log("Got our new Review!", newReview);
-      if (newReview.errors) {
+      if (newReview.hasOwnProperty("errors")) {
         console.log("NewReview Errors: ", newReview.errors);
+        //@ts-ignore
         this.errors = newReview.errors;
         console.log("Errors: ", this.errors);
       }
